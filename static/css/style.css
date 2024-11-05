@@ -1,0 +1,19 @@
+#grid {
+    display: grid;
+    grid-template: 40px / 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    border: 2px solid black;
+}
+
+ #grid div {
+    background-color: red;
+ }
+
+ .drawing-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
