@@ -4,10 +4,6 @@
     border: 2px solid black;
 }
 
- #grid div {
-    background-color: red;
- }
-
  .drawing-field {
     display: flex;
     align-items: center;

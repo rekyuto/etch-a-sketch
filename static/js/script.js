@@ -6,6 +6,10 @@ for (let i = 0; i < 256; i++) {
   const gridSquare = document.createElement('div');
   gridSquare.style.width = "40px";
   gridSquare.style.height = "40px";
-  gridSquare.textContent = i + 1;
   grid.appendChild(gridSquare);
+
+  gridSquare.addEventListener("mouseover", () => {
+    gridSquare.style.backgroundColor = "black";
+  });
 }
+
