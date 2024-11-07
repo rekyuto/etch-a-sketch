@@ -28,6 +28,27 @@ function createGrid(size){
       gridSquare.style.backgroundColor = selection;
     });
 
+    gridSquare.addEventListener("mouseover", () => {gridSquare.style.opacity = "50%";});
+    gridSquare.addEventListener("mouseout", () => {gridSquare.style.opacity = "100%";})
+
+    // Allows the user to draw like using a pen tool
+
+    let isDragging = false;
+    gridSquare.addEventListener("mousedown", () => {isDragging = true;});
+    document.addEventListener("mouseup", () => {isDragging = false;});
+    document.addEventListener("mousemove", (event) => {
+      if (isDragging && event.target.classList.contains("grid-square")) {
+        if (rainbowToggle === true){
+          const red = Math.floor(Math.random() * 256);
+          const green = Math.floor(Math.random() * 256);
+          const blue = Math.floor(Math.random() * 256);
+
+          selection = `rgb(${red}, ${green}, ${blue})`;
+        }
+        event.target.style.backgroundColor = selection;
+      }
+    });
+
     // Clears the entire grid
 
     const resetGrid = document.querySelector("#resetGrid");
@@ -52,7 +73,7 @@ function toggle(){
 }
 
 rainbowButton.addEventListener("click", () => {
-  toggle();
+toggle();
 });
 normalButton.addEventListener("click", () => {
   toggle();
