@@ -14,17 +14,19 @@ function createGrid(size){
 
     // "Draws" on the grid by changing the background color of a gridSquare
 
-    gridSquare.addEventListener("mouseover", () => {
+    gridSquare.addEventListener("mousedown", () => {
       if (rainbowToggle === true){
         const red = Math.floor(Math.random() * 256);
         const green = Math.floor(Math.random() * 256);
         const blue = Math.floor(Math.random() * 256);
 
-        gridSquare.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        selection = `rgb(${red}, ${green}, ${blue})`;
       } else if (normalToggle === true){
-        gridSquare.style.backgroundColor = "black";
+        selection = "black";
       }
-    })
+
+      gridSquare.style.backgroundColor = selection;
+    });
 
     // Clears the entire grid
 
