@@ -1,3 +1,5 @@
+// Creates a new grid
+
 const grid = document.querySelector("#grid");
 
 function createGrid(size){
@@ -10,9 +12,21 @@ function createGrid(size){
     gridSquare.classList.add("grid-square");
     grid.appendChild(gridSquare);
 
-    gridSquare.addEventListener("mouseover", () =>{
-      gridSquare.style.backgroundColor = "black";
-    });
+    // "Draws" on the grid by changing the background color of a gridSquare
+
+    gridSquare.addEventListener("mouseover", () => {
+      if (rainbowToggle === true){
+        const red = Math.floor(Math.random() * 256);
+        const green = Math.floor(Math.random() * 256);
+        const blue = Math.floor(Math.random() * 256);
+
+        gridSquare.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+      } else if (normalToggle === true){
+        gridSquare.style.backgroundColor = "black";
+      }
+    })
+
+    // Clears the entire grid
 
     const resetGrid = document.querySelector("#resetGrid");
       
@@ -21,6 +35,28 @@ function createGrid(size){
     })
   };
 };
+
+// Toggles between the normal and rainbow pen
+
+let normalToggle = true;
+let rainbowToggle = false;
+
+const rainbowButton = document.querySelector("#rainbowButton");
+const normalButton = document.querySelector("#normalButton");
+
+function toggle(){
+  rainbowToggle = !rainbowToggle;
+  normalToggle = !normalToggle;
+}
+
+rainbowButton.addEventListener("click", () => {
+  toggle();
+});
+normalButton.addEventListener("click", () => {
+  toggle();
+});
+
+// Creates a new grid size by promting the user for a value between 4-100
 
 const changeGridSize = document.querySelector("#changeGridSize");
 
@@ -32,5 +68,7 @@ changeGridSize.addEventListener("click", () => {
       alert("Invalid value!");
     }
 });
+
+// Initializes a 16x16 grid on load
 
 createGrid(16);
