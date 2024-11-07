@@ -1,34 +1,36 @@
-// Creates 256 div elements to make a 16x16 grid
-
 const grid = document.querySelector("#grid");
 
-for (let i = 0; i < 256; i++) {
-  const gridSquare = document.createElement('div');
+function createGrid(size){
+  grid.innerHTML = "";
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-  gridSquare.style.width = "40px";
-  gridSquare.style.height = "40px";
-  grid.appendChild(gridSquare);
+  for (let i = 0; i < size * size; i++){
+    const gridSquare = document.createElement("div");
+    gridSquare.classList.add("grid-square");
+    grid.appendChild(gridSquare);
 
-  // Makes a square black on hover
+    gridSquare.addEventListener("mouseover", () =>{
+      gridSquare.style.backgroundColor = "black";
+    });
 
-  gridSquare.addEventListener("mouseover", () => {
-    gridSquare.style.backgroundColor = "black";
-  });
+    const resetGrid = document.querySelector("#resetGrid");
+      
+    resetGrid.addEventListener("click", () => {
+      gridSquare.style.backgroundColor = "white";
+    })
+  };
+};
 
-  // Resets the entire grid
-
-  const resetGrid = document.querySelector("#resetGrid");
-
-  resetGrid.addEventListener("click", () =>{
-    gridSquare.style.backgroundColor = "white";
-  });
-}
-
-/*
 const changeGridSize = document.querySelector("#changeGridSize");
 
 changeGridSize.addEventListener("click", () => {
-    const size = prompt("Enter a value from 1-100:");
-    
+    const newSize = prompt("Enter a value from 4-100");
+    if (newSize && !isNaN(newSize) && newSize >= 4 && newSize <= 100) {
+      createGrid(parseInt(newSize));
+    } else {
+      alert("Invalid value!");
+    }
 });
-*/
+
+createGrid(16);
