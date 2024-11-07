@@ -73,10 +73,18 @@ function toggle(){
 }
 
 rainbowButton.addEventListener("click", () => {
-toggle();
+  if (rainbowToggle === true){
+    ;
+  } else {
+    toggle();
+  }
 });
 normalButton.addEventListener("click", () => {
-  toggle();
+  if (normalToggle === true){
+    ;
+  } else {
+    toggle();
+  }
 });
 
 // Creates a new grid size by promting the user for a value between 4-100
